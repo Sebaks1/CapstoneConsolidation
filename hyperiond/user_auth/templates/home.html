@@ -1,0 +1,39 @@
+<!-- templates/home.html -->
+
+{% extends "base.html" %}
+<!-- Inherits the structure and layout defined in base.html. This allows the home page to reuse the base layout while customizing specific parts. -->
+
+{% block title %}Home{% endblock %}
+<!-- Sets the page title to "Home". This overrides the title block in base.html, so the browser tab will display "Home" as the page title. -->
+
+{% block content %}
+<!-- Starts the content block where the main content of the home page will be inserted. This content will replace the content block in base.html. -->
+
+  {% if user.is_authenticated %}
+  <!-- Checks if the user is authenticated (logged in). If true, the following content will be displayed. -->
+  
+    Hi {{ user.username }}!
+    <!-- Greets the logged-in user by displaying their username. -->
+    
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <!-- Includes a CSRF token to protect against Cross-Site Request Forgery attacks. This is necessary for security when submitting forms. -->
+      
+      <button type="submit">Log Out</button>
+      <!-- A button that, when clicked, submits the form to log the user out. The form submits a POST request to the logout URL. -->
+    </form>
+  
+  {% else %}
+  <!-- If the user is not authenticated (not logged in), the following content will be displayed. -->
+  
+    <p>You are not logged in</p>
+    <!-- Displays a message indicating that the user is not logged in. -->
+    
+    <a href="{% url 'login' %}">Log In</a>
+    <!-- Provides a link to the login page. The {% url 'login' %} tag generates the correct URL for the login view. -->
+    
+  {% endif %}
+  <!-- Ends the if-else block. The appropriate content is displayed based on the user's authentication status. -->
+  
+{% endblock %}
+<!-- Ends the content block. The content defined here will be inserted into the content block of the base template. -->

@@ -1,0 +1,30 @@
+<!-- templates/registration/signup.html -->
+
+{% extends "base.html" %}
+<!-- Extends the base template, meaning this template will inherit the structure and elements defined in base.html. -->
+
+{% block title %}Sign Up{% endblock %}
+<!-- The title block sets the page title to "Sign Up". This will be displayed in the browser tab and can be overridden if needed. -->
+
+{% block content %}
+<!-- Start of the content block where the main content of the page will be inserted. -->
+
+<h2>Sign up</h2>
+<!-- A heading for the sign-up page. -->
+
+<form method="post">
+  <!-- The form element defines a section where user input is collected. 
+       The method="post" attribute specifies that form data should be sent as a POST request, which is secure and used for sensitive data like user registrations. -->
+
+  {% csrf_token %}
+  <!-- A CSRF token is included to protect against Cross-Site Request Forgery attacks. Django automatically generates this token. -->
+
+  {{ form }}
+  <!-- This renders the form fields. Django will automatically generate the appropriate input elements for each field in the form, based on the form class provided in the view. -->
+
+  <button type="submit">Sign Up</button>
+  <!-- A button that, when clicked, submits the form. It will trigger the view to process the form data. -->
+</form>
+
+{% endblock %}
+<!-- End of the content block. Anything within this block will be rendered inside the content section defined in the base template. -->

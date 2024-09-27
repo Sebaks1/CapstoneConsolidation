@@ -1,0 +1,29 @@
+<!-- templates/registration/login.html -->
+
+{% extends "base.html" %}
+<!-- Inherits the structure and layout from the base.html template. This allows the login page to use the common layout defined in the base template. -->
+
+{% block title %}Login{% endblock %}
+<!-- Sets the page title to "Login". This overrides the title block in base.html, so the browser tab will display "Login" as the page title. -->
+
+{% block content %}
+<!-- Starts the content block where the main content of the login page will be inserted. This content will replace the content block in base.html. -->
+
+<h2>Log In</h2>
+<!-- A heading for the login form, giving context to the user that this is the login page. -->
+
+<form method="post">
+  <!-- The form element defines a section where user input is collected. The method="post" attribute specifies that form data should be sent as a POST request, which is more secure for sensitive data like login credentials. -->
+
+  {% csrf_token %}
+  <!-- Includes a CSRF token to protect against Cross-Site Request Forgery attacks. Django automatically generates this token for security purposes. -->
+
+  {{ form }}
+  <!-- This renders the login form fields. Django will automatically generate the appropriate input elements for the form fields (e.g., username and password) based on the form class provided in the view. -->
+
+  <button type="submit">Log In</button>
+  <!-- A button that, when clicked, submits the form. This will send the user's input (username and password) to the server for authentication. -->
+</form>
+
+{% endblock %}
+<!-- Ends the content block. The content defined here will be inserted into the content block of the base template. -->

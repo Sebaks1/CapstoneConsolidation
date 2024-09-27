@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact - Music Band{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Contact Us</h1>
+    <p>For enquiries contact bookings@yourock.com.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="message">Your Message:</label>
+            <textarea name="message" id="message" rows="4" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+</div>
+{% endblock %}
